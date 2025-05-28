@@ -1,20 +1,31 @@
 // Entrypoint for PermEq
 import { tokenize } from "./lexer";
-import { parse } from "./parser";
+import { parseLines } from "./parser";
 import { interpret, evalExpr } from "./interpreter";
 import { Environment } from "./environment";
 
 // Example program:
 const code = `
+print "Hello, world!"
 a = 2 + 2
 b ≡ a * 3
+print b
 a = 10
+print b
+
+for i = 1 to 3
+  print i
+end
 `;
 
-// Tokenize each line separately, then parse all statements together
-const lines = code.trim().split('\n').map(line => line.trim()).filter(Boolean);
+// Split code into lines, tokenize each line, parse, and flatten all statements
+const lines = code
+  .trim()
+  .split('\n')
+  .map(line => line.trim())
+  .filter(Boolean);
 const allTokens: string[][] = lines.map(line => tokenize(line));
-const statements = allTokens.flatMap(tokens => parse(tokens));
+const statements = parseLines(allTokens);
 const env = new Environment();
 
 interpret(statements, env);
