@@ -2,12 +2,16 @@
 import { Environment } from "./environment";
 import type { Statement, Expression } from "./ast";
 
-function evalExpr(expr: Expression, env: Environment): number {
+// Exported so index.ts can call it for reevaluation
+export function evalExpr(expr: Expression, env: Environment): number {
   switch (expr.type) {
     case "NumberLiteral":
       return expr.value;
     case "Identifier":
-      return env.get(expr.name) ?? 0;
+      // Node 10 compatible:
+      return (env.get(expr.name) !== undefined && env.get(expr.name) !== null)
+        ? env.get(expr.name)
+        : 0;
     case "BinaryExpression":
       const left = evalExpr(expr.left, env);
       const right = evalExpr(expr.right, env);
@@ -40,5 +44,5 @@ export function interpret(statements: Statement[], env: Environment) {
     }
   }
   // After all assignments, update persistent bindings
-  env.reevaluateAll(expr => evalExpr(expr, env));
+  env.reevaluateAll(function(expr) { return evalExpr(expr, env); });
 }
