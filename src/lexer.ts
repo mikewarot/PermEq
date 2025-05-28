@@ -1,5 +1,8 @@
 // A very basic lexer for PermEq (stub)
 export function tokenize(input: string): string[] {
-  // TODO: Implement a real lexer
-  return input.split(/\s+/).filter(Boolean);
+  // This is a placeholder. A real lexer would handle numbers, identifiers, operators, etc.
+  return input
+    .replace(/([=≡()+\-*/])/g, " $1 ")
+    .split(/\s+/)
+    .filter(Boolean);
 }
