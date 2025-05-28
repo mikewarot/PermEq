@@ -3,3 +3,10 @@ b ≡ a * 3
 print b   # prints 6
 a = 10
 print b   # prints 30 (should update automatically)
+
+
+for a=1 to 10
+  print a
+  print b
+  print " "
+end

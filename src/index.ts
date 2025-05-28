@@ -23,12 +23,6 @@ if (filename) {
   // Fallback example program
   code = `
 print "Hello, world!"
-a = 2 + 2
-b ≡ a * 3
-print b
-a = 10
-print b
-
 for i = 1 to 3
   print i
 end

@@ -62,9 +62,9 @@ export function interpret(statements: Statement[], env: Environment) {
         runForStatement(stmt, env);
         break;
     }
+    // After all assignments, update persistent bindings
+    env.reevaluateAll(function(expr) { return evalExpr(expr, env); });
   }
-  // After all assignments, update persistent bindings
-  env.reevaluateAll(function(expr) { return evalExpr(expr, env); });
 }
 
 function runForStatement(stmt: ForStatement, env: Environment) {
