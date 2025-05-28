@@ -1,0 +1,23 @@
+{
+  "name": "permeq",
+  "version": "0.1.0",
+  "description": "A vibe-coded implementation of the PermEq language",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "language",
+    "declarative",
+    "imperative",
+    "typescript",
+    "persistent-equals",
+    "interpreter"
+  ],
+  "author": "mikewarot",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
