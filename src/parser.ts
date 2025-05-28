@@ -1,4 +1,4 @@
-// Improved parser for PermEq that handles multiple statements
+// Multi-statement parser for PermEq
 import type { Statement, Expression } from "./ast";
 
 // Parse a single statement from tokens
@@ -37,11 +37,9 @@ function parseStatement(tokens: string[]): Statement | null {
 }
 
 export function parse(tokens: string[]): Statement[] {
-  // Split tokens into statements at each '=' or '≡' that is not the first token
-  // Or just split input into lines and parse each line (simpler for now)
-  // (Assumes one statement per line)
+  // Join tokens back into a string and split by newlines (one statement per line)
   const rawInput = tokens.join(' ');
-  const lines = rawInput.split(/(?<=;)|\n/).map(line => line.trim()).filter(Boolean);
+  const lines = rawInput.split(/\n/).map(line => line.trim()).filter(Boolean);
   const statements: Statement[] = [];
   for (const line of lines) {
     const lineTokens = line
