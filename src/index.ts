@@ -7,12 +7,16 @@ import * as fs from "fs";
 // Get filename from command-line arguments
 const filename = process.argv[2];
 
-let code: string;
+let code: string = "";
 if (filename) {
   try {
     code = fs.readFileSync(filename, "utf-8");
   } catch (err) {
-    console.error(`Error reading file "${filename}":`, err.message);
+    if (err instanceof Error) {
+      console.error(`Error reading file "${filename}":`, err.message);
+    } else {
+      console.error(`Error reading file "${filename}":`, err);
+    }
     process.exit(1);
   }
 } else {

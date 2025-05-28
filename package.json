@@ -18,6 +18,7 @@
   "author": "mikewarot",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
+    "@types/node": "^22.15.23",
     "typescript": "^5.8.3"
   }
 }

@@ -1,0 +1,9 @@
+print "Wow... this is my second PermEq program"
+a = 0
+b ≡ a + 2
+for i = 1 to 3
+  a = i
+  print "a,b"
+  print a
+  print b
+end
