@@ -1,0 +1,5 @@
+a = 2
+b ≡ a * 3
+print b   # prints 6
+a = 10
+print b   # prints 30 (should update automatically)

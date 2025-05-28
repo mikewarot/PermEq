@@ -3,7 +3,8 @@ a = 0
 b ≡ a + 2
 for i = 1 to 3
   a = i
-  print "a,b"
+  print "a,b,i"
   print a
   print b
+  print i
 end
