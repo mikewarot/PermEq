@@ -11,8 +11,10 @@ b ≡ a * 3
 a = 10
 `;
 
-const tokens = tokenize(code);
-const statements = parse(tokens);
+// Tokenize each line separately, then parse all statements together
+const lines = code.trim().split('\n').map(line => line.trim()).filter(Boolean);
+const allTokens: string[][] = lines.map(line => tokenize(line));
+const statements = allTokens.flatMap(tokens => parse(tokens));
 const env = new Environment();
 
 interpret(statements, env);
