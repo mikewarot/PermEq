@@ -7,11 +7,10 @@ export function evalExpr(expr: Expression, env: Environment): number {
   switch (expr.type) {
     case "NumberLiteral":
       return expr.value;
-    case "Identifier":
-      // Node 10 compatible:
-      return (env.get(expr.name) !== undefined && env.get(expr.name) !== null)
-        ? env.get(expr.name)
-        : 0;
+    case "Identifier": {
+      const v = env.get(expr.name);
+      return (v !== undefined && v !== null) ? v : 0;
+    }
     case "BinaryExpression":
       const left = evalExpr(expr.left, env);
       const right = evalExpr(expr.right, env);
